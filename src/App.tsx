@@ -1,10 +1,28 @@
-import { Game } from "./components/Game";
+import { Fragment } from "react";
+
+/**
+ * Imports Material UI components
+ */
+import { CssBaseline } from "@mui/material";
+
+/**
+ * Imports components
+ */
+import { GameController } from "./components/GameController";
+
+/**
+ * Imports css
+ */
 import "./App.css";
 
-export const App = () => {
+/**
+ * Defines the component
+ */
+export const App: React.FC = () => {
   return (
-    <div className="App">
-      <Game />
-    </div>
+    <Fragment>
+      <CssBaseline />
+      <GameController />
+    </Fragment>
   );
 };

@@ -1,14 +1,21 @@
+/**
+ * Imports types
+ */
+import { Dice } from "../../hooks/useGame";
+
+/**
+ * Defines the component props interface
+ */
 export interface DieProps {
-  numberWords?: string[];
-  val?: number;
-  locked?: boolean;
-  disabled?: boolean;
+  die: Dice;
   rolling?: boolean;
-  handleClick?: (idx: number) => void;
-  idx?: number;
+  onClick: () => void;
 }
 
-export interface ButtonProps {
-  locked: number;
-  rolling: number;
+/**
+ * Defines the Die Icon props interface
+ */
+export interface DieIconProps {
+  locked?: boolean;
+  rolling?: boolean;
 }

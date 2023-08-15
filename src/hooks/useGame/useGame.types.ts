@@ -1,13 +1,23 @@
+/**
+ * Defines the dice interface
+ */
+export interface Dice {
+  value?: number;
+  locked: boolean;
+}
+
+/**
+ * Defines the scores interface
+ */
 export interface Scores {
-  [key: string]: number | undefined;
   ones?: number;
   twos?: number;
   threes?: number;
   fours?: number;
   fives?: number;
   sixes?: number;
-  threeOfKind?: number;
-  fourOfKind?: number;
+  threeOfAKind?: number;
+  fourOfAKind?: number;
   fullHouse?: number;
   smallStraight?: number;
   largeStraight?: number;

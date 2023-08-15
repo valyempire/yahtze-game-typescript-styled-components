@@ -1,57 +1,63 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-// import './Die.css';
-import { DieProps } from "./Die.types";
+/**
+ * Imports components
+ */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button, DieIcon } from "./Die.styled";
+/**
+ * Imports font awesome icons
+ */
 import {
+  faDiceSix,
   faDiceOne,
   faDiceTwo,
-  faDiceThree,
   faDiceFour,
   faDiceFive,
-  faDiceSix,
+  faDiceThree,
 } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Imports styled components
+ */
+import { DieIcon } from "./Die.styles";
+
+/**
+ * Imports types
+ */
+import { DieProps } from "./Die.types";
+
+/**
+ * Defines the component
+ */
 export const Die: React.FC<DieProps> = (props) => {
-  const {
-    numberWords = ["one", "two", "three", "four", "five", "six"],
-    val = 5,
-    locked,
-    disabled,
-    rolling,
-    handleClick,
-    idx,
-  } = props;
+  const { die, rolling, onClick } = props;
 
-  const handleDieClick = () => {
-    if (handleClick) handleClick(idx!);
-  };
-
-  let classes = `Die fas fa-dice-${numberWords[val! - 1]} fa-5x`;
-  if (locked) classes += " Die-locked";
-  if (rolling) classes += " Die-rolling";
-
-  const getDieFace = () => {
-    const diceFaces = [
-      faDiceOne,
-      faDiceTwo,
-      faDiceThree,
-      faDiceFour,
-      faDiceFive,
-      faDiceSix,
-    ];
-    return diceFaces[val - 1];
+  /**
+   * Handles rendering the die
+   */
+  const getDieIcon = () => {
+    switch (die.value) {
+      case 1:
+        return faDiceOne;
+      case 2:
+        return faDiceTwo;
+      case 3:
+        return faDiceThree;
+      case 4:
+        return faDiceFour;
+      case 5:
+        return faDiceFive;
+      default:
+        return faDiceSix;
+    }
   };
 
   return (
-    <Button
-      className={classes}
-      onClick={handleDieClick}
-      disabled={disabled}
-      locked={locked ? 1 : 0}
-      rolling={rolling ? 1 : 0}
+    <DieIcon
+      onClick={onClick}
+      locked={die.locked}
+      rolling={!die.locked && rolling}
     >
-      <DieIcon icon={getDieFace()} />
-    </Button>
+      <FontAwesomeIcon icon={getDieIcon()} />
+    </DieIcon>
   );
 };
